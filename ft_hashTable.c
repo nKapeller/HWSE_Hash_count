@@ -86,7 +86,7 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
             return;
         }
 
-        if (!currentNode->next || strcmp(currentNode->next->keyString, str) > 0) //checks if next node is NULL or next string is "bigger" than current if so it places the string 
+        if (!currentNode->next || strcmp(currentNode->next->keyString, str) > 0) // checks if next node is NULL or next string is "bigger" than current if so it places the string
         {
             Node_t *newNode = ft_createNode(str);
 
@@ -103,4 +103,30 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
         }
         currentNode = currentNode->next;
     }
+}
+
+void ft_freeHashTable(HashTable_t *table)
+{
+    if (!table)
+    {
+        fprintf(stderr, "Error Table is empty");
+        return;
+    }
+
+    int i = 0;
+
+    while (i < TABLE_SIZE)
+    {
+        Node_t *currentBucket = table->bucket[i];
+
+        while (currentBucket)
+        {
+            Node_t *temp = currentBucket;
+            currentBucket = currentBucket->next;
+            free(temp->keyString);
+            free(temp);
+        }
+        i++;
+    }
+    free(table);
 }

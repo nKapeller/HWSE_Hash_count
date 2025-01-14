@@ -12,5 +12,6 @@
 Node_t *ft_createNode(const char *str);
 HashTable_t *ft_createHashTable();
 void ft_insertNewNode(HashTable_t *table, const char *str);
+void ft_freeHashTable(HashTable_t *table);
 
 #endif
