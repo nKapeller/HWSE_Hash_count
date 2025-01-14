@@ -1,4 +1,5 @@
 #include "ft_utils.h"
+#include "ft_hashTable.h"
 #include "ft_structs.h"
 
 #include <string.h>
@@ -22,7 +23,7 @@ char *ft_strdupCalloc(const char *source)
     return duplicate;
 }
 
-int ft_getHashValue(char *str)
+int ft_getHashValue(const char *str)
 {
     int sum = 0;
 
@@ -44,7 +45,7 @@ void ft_printBucket(Node_t *bucket, int index)
 
     int count = 0;
 
-    printf("Bucket [%d]:\n", index);
+    printf("Bucket [%d]: ", index);
 
     while (bucket)
     {
@@ -56,23 +57,26 @@ void ft_printBucket(Node_t *bucket, int index)
         {
             printf("\n");
         }
-
-        printf(", ");
+        else
+        {
+            printf(", ");
+        }
     }
 }
 
 void ft_printTable(HashTable_t *table)
 {
-    if(!table)
+    if (!table)
     {
         fprintf(stderr, "Error Table is Empty\n");
         return;
     }
-    
+
     int i = 0;
 
-    while(i < TABLE_SIZE)
+    while (i < TABLE_SIZE)
     {
-        ft_printBucket(i, table->bucket);
+        ft_printBucket(table->bucket[i], i);
+        i++;
     }
 }

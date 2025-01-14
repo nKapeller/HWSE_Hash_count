@@ -40,6 +40,17 @@ HashTable_t *ft_createHashTable()
     return table;
 }
 
+/**
+ * @brief
+ * Function to place the word with the help of the hascount
+ * in his right bucket by an alpabetical order
+ *
+ * @param table
+ * hashtable struct pointer
+ * @param str
+ * String from the input File
+ */
+
 void ft_insertNewNode(HashTable_t *table, const char *str)
 {
     if (!str)
@@ -67,17 +78,15 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
         return;
     }
 
-    while (currentNode->next)
+    while (currentNode)
     {
-        int cmp = strcmp(currentNode->next->keyString, str);
-
-        if (cmp == 0) // same string increment word count in bucket
+        if (strcmp(currentNode->keyString, str) == 0) // same string, increment word count in bucket
         {
-            currentNode->next->count++;
+            currentNode->count++;
             return;
         }
 
-        if (cmp > 0)
+        if (!currentNode->next || strcmp(currentNode->next->keyString, str) > 0) //checks if next node is NULL or next string is "bigger" than current if so it places the string 
         {
             Node_t *newNode = ft_createNode(str);
 
@@ -93,14 +102,5 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
             return;
         }
         currentNode = currentNode->next;
-
-        Node_t *newNode = ft_createNode(str);
-
-        if (!newNode)
-        {
-            fprintf(stderr, "Error failed to create node");
-            return;
-        }
-        currentNode->next = newNode;
     }
 }

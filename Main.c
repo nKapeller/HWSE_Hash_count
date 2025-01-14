@@ -21,6 +21,33 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    HashTable_t *table = ft_createHashTable();
+    if(!table)
+    {
+        fprintf(stderr, "Error Main -27");
+        return 1;
+    }
+
+    ft_readAndProcessFile(file, table);
+
+       fclose(file);
+
+    // Print the hash table
+    ft_printTable(table);
+
+    // Free the hash table memory
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        Node_t *current = table->bucket[i];
+        while (current)
+        {
+            Node_t *temp = current;
+            current = current->next;
+            free(temp->keyString);
+            free(temp);
+        }
+    }
+    free(table);
     
     /*
     FILE *file = NULL;

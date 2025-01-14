@@ -4,8 +4,8 @@
 
 #include <unistd.h>
 #include <ctype.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <bits/getopt_core.h>
 
@@ -35,7 +35,7 @@ const char *ft_getFileName(int argc, char *argv[])
     return filename;
 }
 
-FILE *ft_openFile(char *filename)
+FILE *ft_openFile(const char *filename)
 {
     FILE *file = fopen(filename, "r");
 
@@ -46,6 +46,13 @@ FILE *ft_openFile(char *filename)
     }
     return file;
 }
+/**
+ * @brief 
+ * 
+ * 
+ * @param file 
+ * @param table 
+ */
 
 void ft_readAndProcessFile(FILE *file, HashTable_t *table)
 {
