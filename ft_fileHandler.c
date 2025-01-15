@@ -20,16 +20,10 @@ const char *ft_getFileName(int argc, char *argv[])
         {
         case 'f':
             filename = optarg;
-            printf("test of optarg: %s: ", filename);
             break;
         default:
-            fprintf(stderr, "Please enter -> -f <FILENAME> after ./executable\n");
+            fprintf(stderr, "\n>>> Please enter: ./executable -f <FILENAME> <<<\n");
             return NULL;
-        }
-
-        if (!filename)
-        {
-            fprintf(stderr, "Please enter -> -f <FILENAME> after ./executable\n");
         }
     }
     return filename;
@@ -41,17 +35,17 @@ FILE *ft_openFile(const char *filename)
 
     if (!file)
     {
-        fprintf(stderr, "Faild to open file");
+        fprintf(stderr, "\n>>> Faild to open file or wrong file, please use .txt format <<<\n");
         return NULL;
     }
     return file;
 }
 /**
- * @brief 
- * 
- * 
- * @param file 
- * @param table 
+ * @brief
+ *
+ *
+ * @param file
+ * @param table
  */
 
 void ft_readAndProcessFile(FILE *file, HashTable_t *table)
@@ -59,7 +53,7 @@ void ft_readAndProcessFile(FILE *file, HashTable_t *table)
     size_t lenght = 0;
     char *line = NULL;
 
-    const char *delimiters = " .\n;:,?\t"; // all wordseperators
+    const char *delimiters = " .\n;:,?\t";
 
     while (getline(&line, &lenght, file) != -1) // -1 is return of getline when error or end of file
     {

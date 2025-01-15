@@ -1,7 +1,7 @@
 #ifndef FT_STRUCTS_H
 #define FT_STRUCTS_H
 
-#define TABLE_SIZE 30
+#define TABLE_SIZE 31
 
 typedef struct Node_t
 {

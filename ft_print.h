@@ -11,5 +11,6 @@
 
 void ft_printBucket(Node_t *bucket, int index);
 void ft_printTable(HashTable_t *table);
+void ft_printSelectedBucket(HashTable_t *table);
 
 #endif

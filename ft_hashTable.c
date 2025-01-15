@@ -43,12 +43,10 @@ HashTable_t *ft_createHashTable()
 /**
  * @brief
  * Function to place the word with the help of the hascount
- * in his right bucket by an alpabetical order
+ * in his right bucket sorted in alpabetical order
  *
- * @param table
- * hashtable struct pointer
- * @param str
- * String from the input File
+ * @param table     pointer to hashtable struct
+ * @param str       String from the input File
  */
 
 void ft_insertNewNode(HashTable_t *table, const char *str)

@@ -1,4 +1,6 @@
 #include "ft_print.h"
+#include "termios.h"
+#include "unistd.h"
 
 void ft_printBucket(Node_t *bucket, int index)
 {
@@ -14,7 +16,7 @@ void ft_printBucket(Node_t *bucket, int index)
 
     while (bucket)
     {
-        printf("%s (%d)", bucket->keyString, bucket->count);
+        printf("%s(%d)", bucket->keyString, bucket->count);
         bucket = bucket->next;
         count++;
 
@@ -46,20 +48,34 @@ void ft_printTable(HashTable_t *table)
     }
 }
 
-void ft_printSelectedBucket(HashTable_t *table, int index)
+void ft_printSelectedBucket(HashTable_t *table)
 {
     if (!table)
     {
-        fprintf(stderr, "Error, table is NULL (ft_printSelectedBucket())\n");
+        fprintf(stderr, "Error, table is empty (ft_printSelectedBucket())\n");
         return;
     }
 
-    if (index >= 0 && index < TABLE_SIZE)
+    printf("\nDo you want to print out one specific bucket? press 'y' as first letter, if not press any other button\n");
+
+    char userChoice = getchar();
+    ft_flushInputBuffer();
+
+    if (userChoice != 'y' && userChoice != 'Y')
     {
-        ft_printBucket(table->bucket[index], index);
+        printf("You choose not to print a specific bucket\n");
+        return;
     }
-    else
+
+    printf("Great! Which bucket should it be today may i ask?\n");
+
+    char input[100];
+
+    if (!fgets(input, sizeof(input), stdin))
     {
-        fprintf(stderr, "Sorry please enter a valid index, between 0 and %d\n", TABLE_SIZE - 1);
+        fprintf(stderr, "Error, faild to read input\n");
+        return;
     }
+
+    ft_processBucketIndices(table, input);
 }

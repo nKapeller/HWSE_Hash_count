@@ -12,8 +12,10 @@
 #include <stdio.h>
 
 char *ft_strdupCalloc(const char *source);
+char *ft_strdupCalloc(const char *source);
 int ft_getHashValue(const char *str);
-void ft_printBucket(Node_t *bucket, int index);
-void ft_printTable(HashTable_t *table);
+void ft_flushInputBuffer();
+void ft_processToken(HashTable_t *table, char *token);
+void ft_processBucketIndices(HashTable_t *table, const char *input);
 
 #endif
