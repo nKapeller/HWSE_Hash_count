@@ -12,6 +12,7 @@
 
 int ft_parseBucketIndizes(char *inputStr, int *selectedBucketsArray)
 {
+   
     char *delimiter = " .;:,\t";
     char *token = strtok(inputStr, delimiter);
     int count = 0;
@@ -27,7 +28,7 @@ int ft_parseBucketIndizes(char *inputStr, int *selectedBucketsArray)
         }
         else
         {
-            fprintf(stderr, "Error: invalid index, skipping this step --parseBucketIndizes()--\n");
+            fprintf(stderr, "Error: invalid index! --ft_parseBucketIndizes()--\n");
         }
         token = strtok(NULL, delimiter);
     }
@@ -120,7 +121,7 @@ void ft_processFileWithBuckets(FILE *inputFile, FILE *outputfile, HashTable_t *t
 
 void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const char *outputFileName)
 {
-    if(!table || !inputfileName || !outputFileName)
+    if (!table || !inputfileName || !outputFileName)
     {
         fprintf(stderr, "Error: invalid input! --ft_executeBucketFilter()--\n");
         return;
@@ -128,10 +129,11 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
 
     char input[MAX_INDEX_NUMBER_LENGHT];
 
-    printf("\nPlease enter one or more bucket indices you want to filter.\nYour numbers will be seperated by 'space' '.' ';' ': ',' or tab\n");
+    printf("\nPlease enter one or more bucket indices you want to filter, max. bucket range is from index [0] to [%d].", TABLE_SIZE - 1);
+    printf("\nYour input numbers will be seperated by 'space' '.' ';' ': ',' or tab\n");
     printf("\nBuckets:");
 
-    if(!ft_readInput(input, sizeof(input)))
+    if (!ft_readInput(input, sizeof(input)))
     {
         return;
     }
@@ -141,15 +143,14 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
     int selectedBuckets[TABLE_SIZE] = {0};
     int bucketCount = ft_parseBucketIndizes(input, selectedBuckets);
 
-    if(bucketCount == 0)
+    if (bucketCount == 0)
     {
-        fprintf(stderr, "Sorry, invalid Buckest selected! ---ft_executeBucketFilter---\n");
         return;
     }
 
     FILE *inputFile = fopen(inputfileName, "r");
 
-    if(!inputFile)
+    if (!inputFile)
     {
         fprintf(stderr, "Error: failed to open input file! --ft_executeBucketFilter()--\n");
         return;
@@ -157,7 +158,7 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
 
     FILE *outputFile = fopen(outputFileName, "w");
 
-    if(!outputFile)
+    if (!outputFile)
     {
         fclose(inputFile);
         fprintf(stderr, "Error: failed to open output file! --ft_executeBucketFilter()--\n");
