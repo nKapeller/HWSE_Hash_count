@@ -1,5 +1,6 @@
 #include "ft_utils.h"
 #include "ft_fileHandler.h"
+#include "ft_filterUtils.h"
 #include "ft_print.h"
 #include <stdio.h>
 
@@ -7,17 +8,18 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        printf("\n>>> Missing option and filename as parameters, please enter: ./executable -f <FILENAME> <<<\n");
+        printf("\n>>> Missing option and input filename as parameters, please enter: ./executable -f <FILENAME> <<<\n");
     }
 
-    const char *filename = ft_getFileName(argc, argv);
+    const char *inputFilename = ft_getFileName(argc, argv);
+    const char *outputFilename = "filterd_output_text.txt";
 
-    if (!filename)
+    if (!inputFilename)
     {
         return 1;
     }
 
-    FILE *file = ft_openFile(filename);
+    FILE *file = ft_openFile(inputFilename);
 
     if (!file)
     {
@@ -40,6 +42,8 @@ int main(int argc, char *argv[])
     printf("\n\n");
 
     ft_printSelectedBucket(table);
+
+    ft_executeBucketFilter(table, inputFilename, outputFilename);
 
     ft_freeHashTable(table);
 

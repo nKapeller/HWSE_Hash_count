@@ -97,18 +97,19 @@ void ft_processBucketIndices(HashTable_t *table, const char *input)
     }
 }
 
+    /*
 int ft_getSelectedBucket(int selectedBuckets[], size_t bucketSize)
 {
-    printf("Please select Bucket indizes you want to filter your text with:\n\n--->\n\n");
+    printf("Please select Bucket indizes you want to filter your text with:\n\n--->");
 
-    char input[MAX_INDEX_NUMBER_LENGHT];
 
-    if(!ft_readInput(input,sizeof(input)));
+
+    if(!ft_readInput(input,sizeof(input)))
     {
         fprintf(stderr, "Error: failed to read input! ---ft_getSelectedBucket()---\n");
         return 0;
     }
-
+    char input[MAX_INDEX_NUMBER_LENGHT];
     int selectedCount = ft_parseBucketIndizes(input, selectedBuckets);
     
     if(selectedCount == 0)
@@ -117,3 +118,4 @@ int ft_getSelectedBucket(int selectedBuckets[], size_t bucketSize)
     }
     return selectedCount;
 }
+    */

@@ -91,12 +91,12 @@ void ft_filterWordsByBucket(HashTable_t *table, FILE *outputFile, const char *li
         {
             if (ft_isWordInBucket(table, hashValue, token))
             {
-                fprintf(outputFile, "%s", token);
+                fprintf(outputFile, "%s ", token);
             }
         }
         token = strtok(NULL, delimiter);
     }
-    free(line);
+    free(lineCpy);
 }
 
 void ft_processFileWithBuckets(FILE *inputFile, FILE *outputfile, HashTable_t *table, const int *selectedBuckets, int bucketCount)
@@ -128,19 +128,22 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
 
     char input[MAX_INDEX_NUMBER_LENGHT];
 
-    printf("Please enter one or more bucket indices you want to filter.\nYour numbers will be seperated by 'space' '.' ';' ': ',' or tab\n");
+    printf("\nPlease enter one or more bucket indices you want to filter.\nYour numbers will be seperated by 'space' '.' ';' ': ',' or tab\n");
+    printf("\nBuckets:");
 
     if(!ft_readInput(input, sizeof(input)))
     {
         return;
     }
 
+    printf("\n");
+
     int selectedBuckets[TABLE_SIZE] = {0};
     int bucketCount = ft_parseBucketIndizes(input, selectedBuckets);
 
     if(bucketCount == 0)
     {
-        fprintf(stderr, "Sorry, invalid Buckest selected!\n");
+        fprintf(stderr, "Sorry, invalid Buckest selected! ---ft_executeBucketFilter---\n");
         return;
     }
 
