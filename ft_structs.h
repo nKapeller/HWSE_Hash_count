@@ -2,6 +2,8 @@
 #define FT_STRUCTS_H
 
 #define TABLE_SIZE 31
+#define MAX_WORDS_PER_LINE 10
+#define MAX_INDEX_NUMBER_LENGHT 100
 
 typedef struct Node_t
 {

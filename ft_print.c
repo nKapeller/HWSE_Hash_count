@@ -1,6 +1,9 @@
 #include "ft_print.h"
-#include "termios.h"
-#include "unistd.h"
+#include "ft_filterUtils.h"
+#include "ft_structs.h"
+
+#include <termios.h>
+#include <unistd.h>
 
 void ft_printBucket(Node_t *bucket, int index)
 {
@@ -48,6 +51,12 @@ void ft_printTable(HashTable_t *table)
     }
 }
 
+/**
+ * @brief 
+ * 
+ * @param table 
+ */
+
 void ft_printSelectedBucket(HashTable_t *table)
 {
     if (!table)
@@ -56,7 +65,7 @@ void ft_printSelectedBucket(HashTable_t *table)
         return;
     }
 
-    printf("\nDo you want to print out one specific bucket? press 'y' as first letter, if not press any other button\n");
+    printf("\nDo you want to print out one specific bucket? press 'y' as first letter, if not press any other letter\n");
 
     char userChoice = getchar();
     ft_flushInputBuffer();
@@ -69,7 +78,7 @@ void ft_printSelectedBucket(HashTable_t *table)
 
     printf("Great! Which bucket should it be today may i ask?\n");
 
-    char input[100];
+    char input[MAX_INDEX_NUMBER_LENGHT];
 
     if (!fgets(input, sizeof(input), stdin))
     {

@@ -12,8 +12,8 @@
 #include <string.h>
 #include <bits/getopt_core.h>
 
-const char *ft_getFileName(int argc, char *argv[]);
 FILE *ft_openFile(const char *filename);
+const char *ft_getFileName(int argc, char *argv[]);
 void ft_readAndProcessFile(FILE *file, HashTable_t *table);
 
 #endif

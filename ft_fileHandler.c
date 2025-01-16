@@ -1,3 +1,5 @@
+#define _POSIX_C_SOURCE 200809L //getline 
+
 #include "ft_fileHandler.h"
 #include "ft_structs.h"
 #include "ft_hashTable.h"
@@ -40,13 +42,6 @@ FILE *ft_openFile(const char *filename)
     }
     return file;
 }
-/**
- * @brief
- *
- *
- * @param file
- * @param table
- */
 
 void ft_readAndProcessFile(FILE *file, HashTable_t *table)
 {

@@ -1,6 +1,8 @@
 #ifndef FT_PRINT_H
 #define FT_PRINT_H
 
+#define MAX_WORDS_PER_LINE 10
+
 #include "ft_utils.h"
 #include "ft_hashTable.h"
 #include "ft_structs.h"
