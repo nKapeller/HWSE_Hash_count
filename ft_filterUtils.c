@@ -1,4 +1,4 @@
-#define _POSIX_C_SOURCE 200809L
+#define _POSIX_C_SOURCE 200809L //getline
 
 #include "ft_fileHandler.h"
 #include "ft_structs.h"

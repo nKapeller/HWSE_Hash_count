@@ -93,14 +93,14 @@ void ft_readAndProcessFile(const char *fileName, HashTable_t *table)
 
     const char *delimiters = " .\n;:,?\t";
 
-    while (getline(&line, &lenght, file) != -1) // -1 is return of getline when error or end of file
+    while (getline(&line, &lenght, file) != -1) 
     {
-        char *token = strtok(line, delimiters); // strtok takes line and seperates first word
+        char *token = strtok(line, delimiters); 
 
         while (token)
         {
             ft_insertNewNode(table, token);
-            token = strtok(NULL, delimiters); // then moves on to next word as long as token is not NULL
+            token = strtok(NULL, delimiters);
         }
     }
     free(line);

@@ -152,7 +152,7 @@ int ft_readInput(char *inputStr, size_t size)
 
 void ft_processToken(HashTable_t *table, char *token)
 {
-    long long index = strtoll(token, NULL, 10); // input string of numbers will be transformed to an long long
+    long long index = strtoll(token, NULL, 10); 
 
     if (index >= 0 && index < TABLE_SIZE)
     {
