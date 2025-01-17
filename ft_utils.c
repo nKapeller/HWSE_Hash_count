@@ -9,6 +9,11 @@
 #include <stdio.h>
 #include <ctype.h>
 
+void ft_printBorder()
+{
+    printf("\n======================================================================================================\n");
+}
+
 void ft_safeStrncpy(char *dest, const char *src, size_t destSize)
 {
     strncpy(dest, src, destSize - 1); // Copy with space for null terminator
@@ -23,7 +28,7 @@ char *ft_strdupCalloc(const char *source)
 
     if (!duplicate)
     {
-        fprintf(stderr, "Allocation failed: strdup");
+        fprintf(stderr, "Error: Allocation failed! --ft_strdupCalloc()--\n");
         return NULL;
     }
 
@@ -55,7 +60,7 @@ int ft_readInput(char *inputStr, size_t size)
 {
     if (!fgets(inputStr, size, stdin))
     {
-        fprintf(stderr, "Error, failed to read input\n");
+        fprintf(stderr, "Error: Failed to read input --ft_readInput()--\n");
         return 0;
     }
 
@@ -80,7 +85,9 @@ int ft_readInput(char *inputStr, size_t size)
     }
     else
     {
-        fprintf(stderr, "Error: dedected an invalid input character --ft_readInput()--\n");
+        ft_printBorder();
+        fprintf(stderr, "\nError: Dedected an invalid input character! --ft_readInput()--\n");
+        ft_printBorder();
     }
     return 0;
 }
@@ -103,7 +110,7 @@ void ft_processBucketIndices(HashTable_t *table, const char *input)
 {
     if (!table || !input)
     {
-        fprintf(stderr, "Error: invalid input or table.\n");
+        fprintf(stderr, "Error: Invalid input or table! --ft_processBucketIndices()--\n");
         return;
     }
 
@@ -120,26 +127,3 @@ void ft_processBucketIndices(HashTable_t *table, const char *input)
         token = strtok(NULL, delimiter);
     }
 }
-
-/*
-int ft_getSelectedBucket(int selectedBuckets[], size_t bucketSize)
-{
-printf("Please select Bucket indizes you want to filter your text with:\n\n--->");
-
-
-
-if(!ft_readInput(input,sizeof(input)))
-{
-    fprintf(stderr, "Error: failed to read input! ---ft_getSelectedBucket()---\n");
-    return 0;
-}
-char input[MAX_INDEX_NUMBER_LENGHT];
-int selectedCount = ft_parseBucketIndizes(input, selectedBuckets);
-
-if(selectedCount == 0)
-{
-    fprintf(stderr, "Invalid bucket selection! ---ft_getSelectedBucket()---\n");
-}
-return selectedCount;
-}
-*/

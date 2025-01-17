@@ -2,6 +2,7 @@
 #include "ft_fileHandler.h"
 #include "ft_filterUtils.h"
 #include "ft_print.h"
+
 #include <stdio.h>
 
 int main(int argc, char *argv[])
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
 
     const char *inputFilename = ft_getFileName(argc, argv);
     const char *outputFilename = "filterd_output_text.txt";
+    const char *binaryFilename = "binary_file.bin";
 
     if (!inputFilename)
     {
@@ -39,11 +41,11 @@ int main(int argc, char *argv[])
 
     ft_printTable(table);
 
-    printf("\n\n");
-
     ft_printSelectedBucket(table);
 
     ft_executeBucketFilter(table, inputFilename, outputFilename);
+
+    ft_printHashToBinary(table, binaryFilename);
 
     ft_freeHashTable(table);
 

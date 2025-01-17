@@ -6,11 +6,11 @@
 #include "ft_utils.h"
 #include "ft_filterUtils.h"
 
-#include "stdio.h"
-#include "string.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-int ft_parseBucketIndizes(char *inputStr, int *selectedBucketsArray)
+int ft_parseBucketIndizes(char *inputStr, int *selectedBuckets)
 {
    
     char *delimiter = " .;:,\t";
@@ -23,7 +23,7 @@ int ft_parseBucketIndizes(char *inputStr, int *selectedBucketsArray)
 
         if (bucketIndex >= 0 && bucketIndex < TABLE_SIZE)
         {
-            selectedBucketsArray[count] = (int)bucketIndex; // safe my index in the Array
+            selectedBuckets[count] = (int)bucketIndex; // safe my index in the Array
             count++;
         }
         else
@@ -129,9 +129,9 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
 
     char input[MAX_INDEX_NUMBER_LENGHT];
 
-    printf("\nPlease enter one or more bucket indices you want to filter, max. bucket range is from index [0] to [%d].", TABLE_SIZE - 1);
+    printf("\nNow please enter one or more bucket indices you want to filter, max. bucket range is from index [0] to [%d].\n", TABLE_SIZE - 1);
     printf("\nYour input numbers will be seperated by 'space' '.' ';' ': ',' or tab\n");
-    printf("\nBuckets:");
+    printf("\nBuckets-> ");
 
     if (!ft_readInput(input, sizeof(input)))
     {
@@ -167,7 +167,9 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
 
     ft_processFileWithBuckets(inputFile, outputFile, table, selectedBuckets, bucketCount);
 
-    printf("Filterd text written to file: %s\n", outputFileName);
+    printf("Filterd text written to file: <<<%s>>>\n", outputFileName);
+
+    ft_printBorder();
 
     fclose(inputFile);
     fclose(outputFile);

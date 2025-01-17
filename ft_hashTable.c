@@ -10,7 +10,7 @@ Node_t *ft_createNode(const char *str)
 {
     if (!str)
     {
-        fprintf(stderr, "Error string is empty\n");
+        fprintf(stderr, "Error: string is empty! --ft_createNode()--\n");
         return NULL;
     }
 
@@ -18,7 +18,7 @@ Node_t *ft_createNode(const char *str)
 
     if (!newNode)
     {
-        fprintf(stderr, "Allocation for node failed\n"); // check later in main again?
+        fprintf(stderr, "Error: Allocation for node failed! --ft_creatNode()--\n");
         return NULL;
     }
 
@@ -34,7 +34,7 @@ HashTable_t *ft_createHashTable()
 
     if (!table)
     {
-        fprintf(stderr, "Allocation for hash table failed\n"); // check later in main again?
+        fprintf(stderr, "Error: Allocation for hash table failed! --ft_createHashTable()--\n"); 
         return NULL;
     }
     return table;
@@ -53,7 +53,7 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
 {
     if (!str)
     {
-        fprintf(stderr, "Error string is empty\n");
+        fprintf(stderr, "Error: String is empty! --ft_insertNewNode()--\n");
         return;
     }
 
@@ -66,7 +66,7 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
 
         if (!newNode)
         {
-            fprintf(stderr, "Error failed to create node");
+            fprintf(stderr, "Error: Failed to create node! --ft_insertNewNode()--\n");
             return;
         }
 
@@ -90,7 +90,7 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
 
             if (!newNode)
             {
-                fprintf(stderr, "Error failed to create node");
+                fprintf(stderr, "Error: Failed to create node! --ft_insertNewNode()--\n");
                 return;
             }
 
@@ -107,7 +107,7 @@ void ft_freeHashTable(HashTable_t *table)
 {
     if (!table)
     {
-        fprintf(stderr, "Error Table is empty");
+        fprintf(stderr, "Error: Table is empty! --ft_freeHashTable()--\n");
         return;
     }
 

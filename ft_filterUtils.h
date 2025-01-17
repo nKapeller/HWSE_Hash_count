@@ -2,6 +2,7 @@
 #define FT_FILTERUTILS_H
 
 #include "ft_structs.h"
+
 #include <stdio.h>
 
 int ft_parseBucketIndizes(char *inputStr, int *selectedBucketsArray);
