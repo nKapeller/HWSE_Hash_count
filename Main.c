@@ -39,16 +39,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    FILE *file = ft_openFile(inputFilename);
-
-    if (!file)
-    {
-        fclose(file);
-        fprintf(stderr, "Error: Failed to open file --ft_readAndProcessFile()\n");
-        return 1;
-    }
-
-    ft_readAndProcessFile(file, table);
+    ft_readAndProcessFile(inputFilename, table);
 
     ft_printTable(table);
 
@@ -57,8 +48,6 @@ int main(int argc, char *argv[])
     ft_executeBucketFilter(table, inputFilename, outputFilename);
 
     ft_printHashToBinary(table, binaryFilename);
-
-    fclose(file);
 
     ft_freeHashTable(table);
 

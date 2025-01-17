@@ -9,6 +9,6 @@
 
 FILE *ft_openFile(const char *filename);
 const char *ft_getFileName(int argc, char *argv[]);
-void ft_readAndProcessFile(FILE *file, HashTable_t *table);
+void ft_readAndProcessFile(const char *inputFilename, HashTable_t *table);
 
 #endif
