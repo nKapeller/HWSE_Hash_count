@@ -124,6 +124,7 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
  * 
  * @param table     Pointer to Hashtable struct which should be free'd
  */
+
 void ft_freeHashTable(HashTable_t *table)
 {
     if (!table)

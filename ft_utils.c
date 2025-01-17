@@ -13,6 +13,7 @@
  * @brief
  * Function to print a line of '=' to make the terminal output more structured
  */
+
 void ft_printBorder()
 {
     printf("\n======================================================================================================\n");
@@ -27,6 +28,7 @@ void ft_printBorder()
  * @param src           String which is the source for copying
  * @param destSize      Size of the destination String
  */
+
 void ft_safeStrncpy(char *dest, const char *src, size_t destSize)
 {
     strncpy(dest, src, destSize - 1);
@@ -41,6 +43,7 @@ void ft_safeStrncpy(char *dest, const char *src, size_t destSize)
  * @param source    String which should be duplicated
  * @return char*    Duplicated string
  */
+
 char *ft_strdupCalloc(const char *source)
 {
     size_t length = strlen(source) + 1;
@@ -66,6 +69,7 @@ char *ft_strdupCalloc(const char *source)
  * @param str       String to calculate hashvalue from
  * @return int      Hashvalue 
  */
+
 int ft_getHashValue(const char *str)
 {
     int sum = 0;
@@ -100,6 +104,7 @@ void ft_flushInputBuffer()
  * @param size       Number of chars that can safely be stored in inputString
  * @return int       Returns 1 if succesfull and 0 if not 
  */
+
 int ft_readInput(char *inputStr, size_t size)
 {
     if (!fgets(inputStr, size, stdin))

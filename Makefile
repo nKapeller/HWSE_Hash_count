@@ -19,7 +19,6 @@ clean:
 fclean: clean
 	@$(RM) $(TARGET) 
 
-
 run: $(TARGET)
 	./$(TARGET) -f demo.txt
 

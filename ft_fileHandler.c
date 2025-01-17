@@ -65,18 +65,26 @@ FILE *ft_openFile(const char *filename)
 
 /**
  * @brief
- *  function to read line by line and with the help of strtok()
+ *  Function to read line by line and with the help of strtok()
  *  seperates it word by word when given delimiter was found.
  *
- * @param file      pointer to a file to further process it / have acces to it
- * @param table     pointer to a struct to further process it / have acces to it
+ * @param fileName  Pointer to a file name to process the stream / have acces to it
+ * @param table     Pointer to a struct to further process it / have acces to it
  */
 
-void ft_readAndProcessFile(FILE *file, HashTable_t *table)
+void ft_readAndProcessFile(const char *fileName, HashTable_t *table)
 {
-    if (!file || !table)
+    if (!table)
     {
         fprintf(stderr, "Error: invalid input --ft_readAndProcessFile()\n");
+        return;
+    }
+
+    FILE *file = ft_openFile(fileName);
+
+    if (!file)
+    {
+        fprintf(stderr, "Error: Failed to open file --ft_readAndProcessFile()\n");
         return;
     }
 
@@ -96,4 +104,5 @@ void ft_readAndProcessFile(FILE *file, HashTable_t *table)
         }
     }
     free(line);
+    fclose(file);
 }

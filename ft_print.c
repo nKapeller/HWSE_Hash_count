@@ -15,6 +15,7 @@
  * @param bucket    Pointer to a struct/list Node_t which should be processed
  * @param index     Index of the bucket
  */
+
 void ft_printBucket(Node_t *bucket, int index)
 {
     if (!bucket)
@@ -50,6 +51,7 @@ void ft_printBucket(Node_t *bucket, int index)
  *
  * @param table     Pointer to a Hashtable struct/list which should pe processed
  */
+
 void ft_printTable(HashTable_t *table)
 {
     if (!table)

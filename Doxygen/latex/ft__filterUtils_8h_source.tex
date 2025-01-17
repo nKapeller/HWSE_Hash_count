@@ -1,0 +1,20 @@
+\doxysection{ft\+\_\+filter\+Utils.\+h}
+\hypertarget{ft__filterUtils_8h_source}{}\label{ft__filterUtils_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FT\_FILTERUTILS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FT\_FILTERUTILS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ft\_structs.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{int}\ ft\_parseBucketIndizes(\textcolor{keywordtype}{char}\ *inputStr,\ \textcolor{keywordtype}{int}\ *selectedBucketsArray);}
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{int}\ ft\_isBucketSelected(\textcolor{keywordtype}{int}\ hashValue,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ *selectedBucket,\ \textcolor{keywordtype}{int}\ count);}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{int}\ ft\_isWordInBucket(\mbox{\hyperlink{structHashTable__t}{HashTable\_t}}\ *table,\ \textcolor{keywordtype}{int}\ bucketIndex,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *word);}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ ft\_filterWordsByBucket(\mbox{\hyperlink{structHashTable__t}{HashTable\_t}}\ *table,\ FILE\ *outputFile,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *line,\ \textcolor{keywordtype}{int}\ bucketCount,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ *selectedBuckets);}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ ft\_processFileWithBuckets(FILE\ *inputFile,\ FILE\ *outputfile,\ \mbox{\hyperlink{structHashTable__t}{HashTable\_t}}\ *table,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ *selectedBuckets,\ \textcolor{keywordtype}{int}\ bucketCount);}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ ft\_executeBucketFilter(\mbox{\hyperlink{structHashTable__t}{HashTable\_t}}\ *table,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inputfileName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *outputFileName);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

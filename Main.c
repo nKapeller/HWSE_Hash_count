@@ -5,11 +5,22 @@
 
 #include <stdio.h>
 
+/**
+ * @brief 
+ * Main function mainly calls all other functions 
+ * in the right order and processes them
+ * 
+ * @param argc      Count of the command line Arguments
+ * @param argv      Value of the command line Arguments
+ * @return int      Return status 
+ */
+
 int main(int argc, char *argv[])
 {
-    if (argc < 3)
+    if (argc != 3)
     {
         printf("\n>>> Missing option and input filename as parameters, please enter: ./executable -f <FILENAME> <<<\n");
+        return 1;
     }
 
     const char *inputFilename = ft_getFileName(argc, argv);
@@ -21,13 +32,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    FILE *file = ft_openFile(inputFilename);
-
-    if (!file)
-    {
-        return 1;
-    }
-
     HashTable_t *table = ft_createHashTable();
 
     if (!table)
@@ -35,9 +39,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    ft_readAndProcessFile(file, table);
-
-    fclose(file);
+    ft_readAndProcessFile(inputFilename, table);
 
     ft_printTable(table);
 
