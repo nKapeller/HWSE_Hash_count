@@ -12,7 +12,7 @@
 
 int ft_parseBucketIndizes(char *inputStr, int *selectedBuckets)
 {
-   
+
     char *delimiter = " .;:,\t";
     char *token = strtok(inputStr, delimiter);
     int count = 0;
@@ -23,12 +23,12 @@ int ft_parseBucketIndizes(char *inputStr, int *selectedBuckets)
 
         if (bucketIndex >= 0 && bucketIndex < TABLE_SIZE)
         {
-            selectedBuckets[count] = (int)bucketIndex; // safe my index in the Array
+            selectedBuckets[count] = (int)bucketIndex; 
             count++;
         }
         else
         {
-            fprintf(stderr, "Error: invalid index! --ft_parseBucketIndizes()--\n");
+            fprintf(stderr, "Warning: invalid index was found and ignored, every valid index was processed! --ft_parseBucketIndizes()--\n");
         }
         token = strtok(NULL, delimiter);
     }
@@ -167,8 +167,8 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
 
     ft_processFileWithBuckets(inputFile, outputFile, table, selectedBuckets, bucketCount);
 
-    printf("Filterd text written to file: <<<%s>>>\n", outputFileName);
-
+    ft_printBorder();
+    printf("\nFilterd text written to file: <<<%s>>>\n", outputFileName);
     ft_printBorder();
 
     fclose(inputFile);
