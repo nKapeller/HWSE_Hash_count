@@ -1,4 +1,4 @@
-#define _POSIX_C_SOURCE 200809L //getline
+#define _POSIX_C_SOURCE 200809L // getline
 
 #include "ft_print.h"
 #include "ft_filterUtils.h"
@@ -46,8 +46,8 @@ void ft_printBucket(Node_t *bucket, int index)
 }
 
 /**
- * @brief 
- * Function to print the whole Hashtable, bucket by bucket 
+ * @brief
+ * Function to print the whole Hashtable, bucket by bucket
  *
  * @param table     Pointer to a Hashtable struct/list which should pe processed
  */
@@ -77,7 +77,7 @@ void ft_printTable(HashTable_t *table)
  * then the input will be checkd if valid or not,
  * if valid it will print the selcted bucket with the help of other functions
  *
- * @param table     Pointer to a Hashtable struct/list 
+ * @param table     Pointer to a Hashtable struct/list
  */
 
 void ft_printSelectedBucket(HashTable_t *table)
@@ -107,6 +107,7 @@ void ft_printSelectedBucket(HashTable_t *table)
     char *input = NULL;
     size_t len = 0;
 
+    
     if (getline(&input, &len, stdin) == -1)
     {
         fprintf(stderr, "Error: Failed to read input! --ft_printSelectedBucket()--\n");
@@ -115,16 +116,19 @@ void ft_printSelectedBucket(HashTable_t *table)
     }
 
     input[strcspn(input, "\n")] = '\0';
+
     ft_printBorder();
     ft_processBucketIndices(table, input);
     ft_printBorder();
+
+    free(input);
 }
 
 /**
- * @brief 
+ * @brief
  * Function that opens a binary file and prints hashvalues as binary in it
- * 
- * @param table        Pointer to a Hashtable struct/list 
+ *
+ * @param table        Pointer to a Hashtable struct/list
  * @param filename     Filename of the output binare file
  */
 
@@ -167,7 +171,9 @@ void ft_printHashToBinary(HashTable_t *table, const char *filename)
 
         while (current)
         {
-            fwrite(current->keyString, sizeof(current->keyString), 1, file);
+            size_t keyLength = strlen(current->keyString) + 1;         
+            fwrite(&keyLength, sizeof(size_t), 1, file);               
+            fwrite(current->keyString, sizeof(char), keyLength, file); 
             fwrite(&current->count, sizeof(current->count), 1, file);
 
             current = current->next;

@@ -72,19 +72,11 @@ FILE *ft_openFile(const char *filename)
  * @param table     Pointer to a struct to further process it / have acces to it
  */
 
-void ft_readAndProcessFile(const char *fileName, HashTable_t *table)
+void ft_readAndProcessFile(FILE *file, HashTable_t *table)
 {
     if (!table)
     {
         fprintf(stderr, "Error: invalid input --ft_readAndProcessFile()\n");
-        return;
-    }
-
-    FILE *file = ft_openFile(fileName);
-
-    if (!file)
-    {
-        fprintf(stderr, "Error: Failed to open file --ft_readAndProcessFile()\n");
         return;
     }
 
@@ -104,5 +96,4 @@ void ft_readAndProcessFile(const char *fileName, HashTable_t *table)
         }
     }
     free(line);
-    fclose(file);
 }
