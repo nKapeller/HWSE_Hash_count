@@ -12,8 +12,8 @@
  * @brief
  *  Helper function to print all (keys) strings stored in a bucket
  *
- * @param bucket pointer to a struct/list Node_t which should be processed
- * @param index  index of the bucket
+ * @param bucket    Pointer to a struct/list Node_t which should be processed
+ * @param index     Index of the bucket
  */
 void ft_printBucket(Node_t *bucket, int index)
 {
@@ -48,7 +48,7 @@ void ft_printBucket(Node_t *bucket, int index)
  * @brief 
  * Function to print the whole Hashtable, bucket by bucket 
  *
- * @param table pointer to a Hashtable struct/list which should pe processed
+ * @param table     Pointer to a Hashtable struct/list which should pe processed
  */
 void ft_printTable(HashTable_t *table)
 {
@@ -75,7 +75,7 @@ void ft_printTable(HashTable_t *table)
  * then the input will be checkd if valid or not,
  * if valid it will print the selcted bucket with the help of other functions
  *
- * @param table pointer to a Hashtable struct/list 
+ * @param table     Pointer to a Hashtable struct/list 
  */
 
 void ft_printSelectedBucket(HashTable_t *table)
@@ -122,8 +122,8 @@ void ft_printSelectedBucket(HashTable_t *table)
  * @brief 
  * Function that opens a binary file and prints hashvalues as binary in it
  * 
- * @param table pointer to a Hashtable struct/list 
- * @param filename filename of the output binare file
+ * @param table        Pointer to a Hashtable struct/list 
+ * @param filename     Filename of the output binare file
  */
 
 void ft_printHashToBinary(HashTable_t *table, const char *filename)

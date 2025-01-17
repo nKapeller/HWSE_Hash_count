@@ -6,6 +6,14 @@
 #include <stdio.h>
 #include <string.h>
 
+/**
+ * @brief 
+ * Function to create a node in a linked list 
+ * 
+ * @param str           String that was hashed and is ready to be stored in the list
+ * @return Node_t*      Pointer to a new allocated Node struct
+ */
+
 Node_t *ft_createNode(const char *str)
 {
     if (!str)
@@ -28,6 +36,13 @@ Node_t *ft_createNode(const char *str)
     return newNode;
 }
 
+/**
+ * @brief 
+ * Function to create a new HashTable struct and safely allocate memmory for it 
+ * 
+ * @return HashTable_t*     Pointer to Hashtable struct
+ */
+
 HashTable_t *ft_createHashTable()
 {
     HashTable_t *table = calloc(1, sizeof(HashTable_t));
@@ -45,7 +60,7 @@ HashTable_t *ft_createHashTable()
  * Function to place the word with the help of the hascount
  * in his right bucket sorted in alpabetical order
  *
- * @param table     pointer to hashtable struct
+ * @param table     Pointer to hashtable struct
  * @param str       String from the input File
  */
 
@@ -60,7 +75,7 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
     int hashValue = ft_getHashValue(str);
     Node_t *currentNode = table->bucket[hashValue];
 
-    if (!currentNode || strcmp(str, currentNode->keyString) < 0) // check if list is empty or current node comes for head
+    if (!currentNode || strcmp(str, currentNode->keyString) < 0) 
     {
         Node_t *newNode = ft_createNode(str);
 
@@ -70,21 +85,21 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
             return;
         }
 
-        newNode->next = table->bucket[hashValue]; // newNode points to old head or NULL if list is empty
-        table->bucket[hashValue] = newNode;       // newNode becomes new head of list
+        newNode->next = table->bucket[hashValue]; 
+        table->bucket[hashValue] = newNode;       
 
         return;
     }
 
     while (currentNode)
     {
-        if (strcmp(currentNode->keyString, str) == 0) // same string, increment word count in bucket
+        if (strcmp(currentNode->keyString, str) == 0) 
         {
             currentNode->count++;
             return;
         }
 
-        if (!currentNode->next || strcmp(currentNode->next->keyString, str) > 0) // checks if next node is NULL or next string is "bigger" than current if so it places the string
+        if (!currentNode->next || strcmp(currentNode->next->keyString, str) > 0)
         {
             Node_t *newNode = ft_createNode(str);
 
@@ -103,6 +118,12 @@ void ft_insertNewNode(HashTable_t *table, const char *str)
     }
 }
 
+/**
+ * @brief 
+ * Function to free all allocated memmory so it can be used again
+ * 
+ * @param table     Pointer to Hashtable struct which should be free'd
+ */
 void ft_freeHashTable(HashTable_t *table)
 {
     if (!table)

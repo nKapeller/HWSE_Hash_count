@@ -9,17 +9,38 @@
 #include <stdio.h>
 #include <ctype.h>
 
+/**
+ * @brief
+ * Function to print a line of '=' to make the terminal output more structured
+ */
 void ft_printBorder()
 {
     printf("\n======================================================================================================\n");
 }
 
+/**
+ * @brief
+ *  Function works like included strcpy()
+ *  but always sets a null terminator at the end of the string
+ *
+ * @param dest          String which ist destination of copying
+ * @param src           String which is the source for copying
+ * @param destSize      Size of the destination String
+ */
 void ft_safeStrncpy(char *dest, const char *src, size_t destSize)
 {
-    strncpy(dest, src, destSize - 1); // Copy with space for null terminator
-    dest[destSize - 1] = '\0';        // Explicitly ensure null-termination
+    strncpy(dest, src, destSize - 1);
+    dest[destSize - 1] = '\0';
 }
 
+/**
+ * @brief
+ * Same function as included strdup()
+ * but only with calloc() instead of malloc for extra extra safety
+ *
+ * @param source    String which should be duplicated
+ * @return char*    Duplicated string
+ */
 char *ft_strdupCalloc(const char *source)
 {
     size_t length = strlen(source) + 1;
@@ -37,6 +58,14 @@ char *ft_strdupCalloc(const char *source)
     return duplicate;
 }
 
+/**
+ * @brief 
+ * Function to calculate the hashvalue of a string
+ * takes the sum of every char and then uses modulo the amount of buckets in a Hashtable 
+ * 
+ * @param str       String to calculate hashvalue from
+ * @return int      Hashvalue 
+ */
 int ft_getHashValue(const char *str)
 {
     int sum = 0;
@@ -49,6 +78,12 @@ int ft_getHashValue(const char *str)
     return sum % TABLE_SIZE;
 }
 
+/**
+ * @brief 
+ * Function to clear the input buffer so no more characters are in it 
+ * and is ready for the next user input
+ */
+
 void ft_flushInputBuffer()
 {
     int c = 0;
@@ -56,6 +91,15 @@ void ft_flushInputBuffer()
         ;
 }
 
+/**
+ * @brief 
+ * Function to read user input and check if it is valid, 
+ * processes it (checks for numeric and delimiters only) and returns "1" if it was succesful 
+ * 
+ * @param inputStr   String where user input get stored
+ * @param size       Number of chars that can safely be stored in inputString
+ * @return int       Returns 1 if succesfull and 0 if not 
+ */
 int ft_readInput(char *inputStr, size_t size)
 {
     if (!fgets(inputStr, size, stdin))
@@ -92,6 +136,15 @@ int ft_readInput(char *inputStr, size_t size)
     return 0;
 }
 
+/**
+ * @brief 
+ * Helperfunction to transform the string to a long long int 
+ * and then checks if the provided number is in range of the bucket indices
+ * 
+ * @param table     Pointer to Hashtable struct/list
+ * @param token     String to transform and check
+ */
+
 void ft_processToken(HashTable_t *table, char *token)
 {
     long long index = strtoll(token, NULL, 10); // input string of numbers will be transformed to an long long
@@ -105,6 +158,15 @@ void ft_processToken(HashTable_t *table, char *token)
         fprintf(stderr, "Invalid bucket index, skipping.\n");
     }
 }
+
+/**
+ * @brief 
+ * Function to process input string, makes tokens with the help of delimiters
+ * then sends it to ft_processToken for further processing
+ * 
+ * @param table     Pointer to Hashtable struct/list
+ * @param input     Input string of bucket indizes
+ */
 
 void ft_processBucketIndices(HashTable_t *table, const char *input)
 {

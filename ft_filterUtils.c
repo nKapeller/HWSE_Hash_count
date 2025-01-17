@@ -10,6 +10,17 @@
 #include <string.h>
 #include <stdlib.h>
 
+/**
+ * @brief 
+ * Function to process the input string 
+ * transforming it to an long long int and checking for valid indices  
+ * then storing the count of valid indizes to an Array
+ * 
+ * @param inputStr          String to be processed
+ * @param selectedBuckets   Array for storing valid indizes
+ * @return int              Count of valid indices
+ */
+
 int ft_parseBucketIndizes(char *inputStr, int *selectedBuckets)
 {
 
@@ -35,6 +46,16 @@ int ft_parseBucketIndizes(char *inputStr, int *selectedBuckets)
     return count;
 }
 
+/**
+ * @brief 
+ * Function to check if a bucket is selected
+ * helper for an other function
+ * 
+ * @param hashValue         Hashvalue that needs to be checked
+ * @param selectedBucket    Pointer to Array with bucket indices
+ * @param count             Count of valid buckets indices
+ * @return int              return 0 if nothing was found and 1 if match was found
+ */
 int ft_isBucketSelected(int hashValue, const int *selectedBucket, int count)
 {
     int i = 0;
@@ -50,6 +71,15 @@ int ft_isBucketSelected(int hashValue, const int *selectedBucket, int count)
     return 0;
 }
 
+/**
+ * @brief 
+ * Function to check if a word was found in a bucket 
+ * 
+ * @param table 
+ * @param bucketIndex 
+ * @param word 
+ * @return int 
+ */
 int ft_isWordInBucket(HashTable_t *table, int bucketIndex, const char *word)
 {
     Node_t *current = table->bucket[bucketIndex];
@@ -127,11 +157,11 @@ void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const
         return;
     }
 
-    char input[MAX_INDEX_NUMBER_LENGHT];
-
     printf("\nNow please enter one or more bucket indices you want to filter, max. bucket range is from index [0] to [%d].\n", TABLE_SIZE - 1);
     printf("\nYour input numbers will be seperated by 'space' '.' ';' ': ',' or tab\n");
     printf("\nBuckets-> ");
+
+    char input[MAX_INDEX_NUMBER_LENGHT];
 
     if (!ft_readInput(input, sizeof(input)))
     {
