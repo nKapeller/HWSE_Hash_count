@@ -73,12 +73,13 @@ int ft_isBucketSelected(int hashValue, const int *selectedBucket, int count)
 
 /**
  * @brief 
- * Function to check if a word was found in a bucket 
+ * Function to validate if a word is located in a specific bucket 
+ * if it was found function returns 1 else 0
  * 
- * @param table 
- * @param bucketIndex 
- * @param word 
- * @return int 
+ * @param table            Pointer to Hashtable struct
+ * @param bucketIndex      Index of bucket which shall be searched for word
+ * @param word             Word to look for in bucket
+ * @return int             return 1 if word was found and 0 if not
  */
 int ft_isWordInBucket(HashTable_t *table, int bucketIndex, const char *word)
 {
@@ -94,6 +95,19 @@ int ft_isWordInBucket(HashTable_t *table, int bucketIndex, const char *word)
     }
     return 0;
 }
+
+/**
+ * @brief 
+ * Function takes a line of input and tokenizes it then process it
+ * by looking for right bucket with help of the hashvalue
+ * if it has found one it prints the word to the output file
+ * 
+ * @param table             Pointer to Hashtable struct
+ * @param outputFile        File where matching words will be written to 
+ * @param line              A line of the inputfile from other function
+ * @param bucketCount       Amount of buckets to be looked at
+ * @param selectedBuckets   Array of valid buckets 
+ */
 
 void ft_filterWordsByBucket(HashTable_t *table, FILE *outputFile, const char *line, int bucketCount, const int *selectedBuckets)
 {
@@ -130,6 +144,18 @@ void ft_filterWordsByBucket(HashTable_t *table, FILE *outputFile, const char *li
     free(lineCpy);
 }
 
+/**
+ * @brief 
+ * Function to process the input file line by line
+ * and is then printing the filtered words in an output file
+ * 
+ * @param inputFile         Pointer to input file 
+ * @param outputfile        Pointer to output file
+ * @param table             Pointer to hashtable struct 
+ * @param selectedBuckets   Pointer to Array of buckets indices to be filtered
+ * @param bucketCount       Amount of buckets to be looked at
+ */
+
 void ft_processFileWithBuckets(FILE *inputFile, FILE *outputfile, HashTable_t *table, const int *selectedBuckets, int bucketCount)
 {
     if (!inputFile || !outputfile || !table || !selectedBuckets)
@@ -148,6 +174,17 @@ void ft_processFileWithBuckets(FILE *inputFile, FILE *outputfile, HashTable_t *t
     }
     free(line);
 }
+
+/**
+ * @brief 
+ * Function to execute the helper functions
+ * here comes all together and will be processed
+ * also handles the file stream
+ * 
+ * @param table             Pointer to hashtable struct 
+ * @param inputfileName     Pointer to input file name
+ * @param outputFileName    Pointer to output file name
+ */
 
 void ft_executeBucketFilter(HashTable_t *table, const char *inputfileName, const char *outputFileName)
 {
